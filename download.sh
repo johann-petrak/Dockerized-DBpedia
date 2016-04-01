@@ -10,6 +10,8 @@ LANG="null"
 RDFTYPE="ttl"
 DIRECTORY="downloads"
 
+WGETOPTS="--progress=bar:force:noscroll --tries=1 --timeout=5 -N -c"
+
 # Check if downloads directory exist or else make one
 if [ ! -d "$DIRECTORY" ]; then
     # Control will enter here if $DIRECTORY doesn't exist.
@@ -97,7 +99,7 @@ DOWNLAODED=0
 for i in `cat downloadURLs.txt`; 
 do
   echo "Download URL: " $i
-  wget -P "$PWD/$DIRECTORY/" $i
+  wget -P "$PWD/$DIRECTORY/" $WGETOPTS $i
   if [[ $? == 0 ]]; then
     DOWNLAODED=$((DOWNLAODED+1))
   fi
